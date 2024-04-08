@@ -1,21 +1,25 @@
 package org.example.schoolapp.Controller;
 
-import org.example.schoolapp.Student.Student;
+import org.example.schoolapp.Teacher.Teacher;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class TeacherController {
     @GetMapping("/teachers")
-    public List<Student> getAllTeachers() {
-
-        return null; //Figure out return statements
+    public List<Teacher> getAllTeachers() {
+        List<Teacher> test = new ArrayList<>();
+        test.add(new Teacher("Mrs. Doe"));
+        test.add(new Teacher("Mr. Smith"));
+        return test;
     }
 
     @GetMapping("/teacher")
-    public Student getOneTeacher() {
-        return null; //Placeholder
+    public Teacher getOneTeacher() {
+        Teacher test = new Teacher("Mr. Cooper");
+        return test;
     }
 }
