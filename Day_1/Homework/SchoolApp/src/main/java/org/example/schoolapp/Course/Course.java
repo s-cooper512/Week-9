@@ -1,12 +1,12 @@
 package org.example.schoolapp.Course;
 
-import org.example.schoolapp.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
-import java.util.List;
-import java.util.Objects;
-
+@Entity
 public class Course {
     private String courseName;
+    @Id
     private String courseID;
     private String[] teacherID;
 
@@ -14,6 +14,10 @@ public class Course {
         this.setCourseName(name);
         this.setCourseID(ID);
         this.setTeacherID(teacherIDs);
+    }
+
+    public Course() {
+
     }
 
     public String[] getTeacherID() {

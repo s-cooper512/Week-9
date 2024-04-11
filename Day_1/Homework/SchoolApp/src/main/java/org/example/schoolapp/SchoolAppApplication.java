@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SchoolAppApplication {
 
     public static void main(String[] args) {
-        Data.initData();
+        //Data.initData();
         SpringApplication.run(SchoolAppApplication.class, args);
     }
 

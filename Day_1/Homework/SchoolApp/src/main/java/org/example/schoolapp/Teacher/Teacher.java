@@ -1,9 +1,12 @@
 package org.example.schoolapp.Teacher;
 
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
 public class Teacher {
     private String teacherName;
+    @Id
     private String teacherID;
     private String[] courses;
 
@@ -11,6 +14,10 @@ public class Teacher {
         this.setName(name);
         this.setTeacherID(ID);
         this.setCourses(courses);
+    }
+
+    public Teacher() {
+
     }
 
     public String getTeacherID() {

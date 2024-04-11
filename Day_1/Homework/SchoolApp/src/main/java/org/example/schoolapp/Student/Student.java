@@ -1,39 +1,48 @@
 package org.example.schoolapp.Student;
 
-import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Student {
-    private String studentName;
-    private String studentID;
-    private String[] enrolledCourses;
 
-    public Student(String name, String ID, String[] courses) {
-        this.setName(name);
-        this.setStudentID(ID);
-        this.setEnrolledCourses(courses);
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    // Constructors
+    public Student() {
     }
 
-    public String getStudentID() {
-        return studentID;
+    public Student(String name) {
+        this.name = name;
     }
 
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
+    // Getters and Setters
+    public Long getId() {
+        return id;
     }
 
-    public String[] getEnrolledCourses() {
-        return enrolledCourses;
-    }
-
-    public void setEnrolledCourses(String[] enrolledCourses) {
-        this.enrolledCourses = enrolledCourses;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
-        return studentName;
+        return name;
     }
 
     public void setName(String name) {
-        this.studentName = name;
+        this.name = name;
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", name=" + name + "]";
     }
 }
