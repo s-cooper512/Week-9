@@ -1,10 +1,10 @@
 package org.example.schoolapp.Student;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -14,6 +14,15 @@ public class Student {
     private Long id;
 
     private String name;
+
+    @ElementCollection
+    @CollectionTable(name = "student_courses", joinColumns = @JoinColumn(name = "student_id"))
+    @Column(name = "course_id")
+    private List<Long> enrolledCourses = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "home_address_id", referencedColumnName = "id")
+    private Address homeAddress;
 
     // Constructors
     public Student() {
@@ -44,5 +53,13 @@ public class Student {
     @Override
     public String toString() {
         return "Student [id=" + id + ", name=" + name + "]";
+    }
+
+    public List<Long> getEnrolledCourses() {
+        return enrolledCourses;
+    }
+
+    public void setEnrolledCourses(List<Long> enrolledCourses) {
+        this.enrolledCourses = enrolledCourses;
     }
 }
