@@ -3,14 +3,16 @@ package org.example.schoolapp.Course;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.util.List;
+
 @Entity
 public class Course {
     private String courseName;
     @Id
-    private String courseID;
-    private String[] teacherID;
+    private Long courseID;
+    private List<Long> teacherID;
 
-    public Course(String name, String ID, String[] teacherIDs) {
+    public Course(String name, Long ID, List<Long> teacherIDs) {
         this.setCourseName(name);
         this.setCourseID(ID);
         this.setTeacherID(teacherIDs);
@@ -20,19 +22,19 @@ public class Course {
 
     }
 
-    public String[] getTeacherID() {
+    public List<Long> getTeacherID() {
         return teacherID;
     }
 
-    public void setTeacherID(String[] ID) {
+    public void setTeacherID(List<Long> ID) {
         this.teacherID = ID;
     }
 
-    public String getCourseID() {
+    public Long getCourseID() {
         return courseID;
     }
 
-    public void setCourseID(String courseID) {
+    public void setCourseID(Long courseID) {
         this.courseID = courseID;
     }
 

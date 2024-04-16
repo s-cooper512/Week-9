@@ -45,6 +45,7 @@ public class StudentController {
         if (existingStudent.isPresent()) {
             Student updatedStudent = existingStudent.get();
             updatedStudent.setName(student.getName());
+            updatedStudent.setEnrolledCourses(student.getEnrolledCourses());
             // You can add more updates here
             studentRepository.save(updatedStudent);
             return "Student updated successfully!";
@@ -63,4 +64,21 @@ public class StudentController {
             return "Student not found!";
         }
     }
+
+    @PostMapping("/student/courses/{studentID}")
+    public String addCourses(@PathVariable Long studentID, @RequestParam("courseID") Long courseID) {
+        Optional<Student> existingStudent = studentRepository.findById(studentID);
+        if (existingStudent.isPresent()) {
+            Student updatedStudent = existingStudent.get();
+            List<Long> newCourseList = existingStudent.get().getEnrolledCourses();
+            newCourseList.add(courseID);
+            updatedStudent.setEnrolledCourses(newCourseList);
+            studentRepository.save(updatedStudent);
+            return "Student's courses updated successfully!";
+        } else {
+            return "Student not found!";
+        }
+    }
+
+    
 }
