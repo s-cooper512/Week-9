@@ -5,6 +5,7 @@ import org.example.schoolapp.Student.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,5 +81,18 @@ public class StudentController {
         }
     }
 
-    
+    @GetMapping("/student/courses/{studentID}")
+    public String getCourses(@PathVariable Long studentID) {
+        Optional<Student> existingStudent = studentRepository.findById(studentID);
+        if (existingStudent.isPresent()) {
+            existingStudent.get().getEnrolledCourses().forEach(num -> {CourseController.getCourseNameById(num);});
+
+            List<Long> courseIDs = existingStudent.get().getEnrolledCourses();
+            List<String> courseNames = new ArrayList<>();
+            courseNames.add(CourseController.getCourseNameById(1L));
+            return (existingStudent.get().getName() + " is enrolled in: ");
+        } else {
+            return "Student not found!";
+        }
+    }
 }
